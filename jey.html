@@ -1,0 +1,327 @@
+
+
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Invitation de Mariage — [Noms]</title>
+<style>
+:root{
+--bg:#0b0b0b;
+--card:#0f0f10;
+--gold:#d4af37;
+--muted:#bdbdbd;
+--accent:rgba(212,175,55,0.12);
+--glass: rgba(255,255,255,0.03);
+font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+*{box-sizing:border-box}
+body{
+margin:0;
+background: radial-gradient(1200px 600px at 10% 10%, rgba(212,175,55,0.05), transparent),
+linear-gradient(180deg,#050505 0%, #0a0a0a 100%);
+color:#fff;
+-webkit-font-smoothing:antialiased;
+-moz-osx-font-smoothing:grayscale;
+line-height:1.45;
+}
+
+.wrap{
+max-width:980px; margin:30px auto; padding:22px;
+}
+
+.hero{
+display:grid;
+grid-template-columns: 1fr;
+gap:18px;
+align-items:center;
+background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+border-radius:14px;
+padding:20px;
+box-shadow: 0 8px 30px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.02) inset;
+overflow:hidden;
+}
+
+.cover{
+border-radius:12px; overflow:hidden; position:relative;
+min-height:220px;
+background-size:cover;
+background-position:center;
+display:flex; align-items:flex-end; padding:20px;
+}
+
+.title{
+font-family: "Playfair Display", serif;
+font-size:28px; letter-spacing:1px; color:var(--gold);
+text-shadow: 0 3px 20px rgba(0,0,0,0.6);
+}
+.subtitle{ color:var(--muted); font-size:14px; margin-top:6px }
+
+.details{
+display:flex; gap:12px; flex-wrap:wrap; margin-top:8px;
+}
+.pill{
+background:var(--glass); border-radius:999px; padding:8px 12px; font-size:13px; color:var(--muted);
+display:inline-flex; gap:8px; align-items:center;
+}
+
+.countdown{
+display:flex; gap:10px; margin-top:14px; align-items:center; flex-wrap:wrap;
+}
+.countdown .unit{
+background:rgba(212,175,55,0.08); border:1px solid rgba(212,175,55,0.12);
+padding:10px 14px; border-radius:10px; text-align:center;
+min-width:68px;
+}
+.countdown .num{ font-size:20px; color:var(--gold); font-weight:700; display:block }
+.countdown .lbl{ font-size:11px; color:var(--muted) }
+
+.grid{
+margin-top:18px; display:grid; grid-template-columns: 1fr 360px; gap:18px;
+}
+@media (max-width:880px){ .grid{grid-template-columns:1fr} }
+
+.card{
+background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+border-radius:12px; padding:16px; box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+}
+
+.map{ width:100%; height:260px; border-radius:10px; border:0; }
+
+.rsvp-input{ width:100%; padding:10px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.06); background:transparent; color:#fff; margin-bottom:10px; }
+.btn{
+display:inline-block; padding:10px 16px; border-radius:10px; border:0; cursor:pointer; font-weight:600;
+background:linear-gradient(90deg,var(--gold), #c99b32); color:#111; box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+}
+.btn-outline{ background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--muted); box-shadow:none }
+
+.gallery{ display:flex; gap:8px; margin-top:10px; flex-wrap:wrap }
+.gallery img{ width:calc(50% - 4px); border-radius:8px; object-fit:cover; height:110px; }
+
+footer{ text-align:center; margin-top:20px; color:var(--muted); font-size:13px }
+
+/* small flourishes */
+.gold-line{ height:4px; background:linear-gradient(90deg,var(--gold), rgba(212,175,55,0.3)); border-radius:6px; margin:10px 0; }
+</style>
+</head>
+<body>
+
+<!-- =========================
+PERSONNALISE ICI (changer les valeurs)
+========================= -->
+<script>
+// Remplace ces valeurs par les vraies informations du mariage
+const BRIDE_NAME = "Alice";
+const GROOM_NAME = "Jean";
+const WEDDING_DATE = "2026-06-30T15:00:00"; // Format ISO (YYYY-MM-DDTHH:mm:ss) — changer ici !
+const VENUE_NAME = "Galerie La Fontaine, Kinshasa";
+const COVER_IMAGE = "https://images.unsplash.com/photo-1523642595783-2a6b2b9e6a04?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=9f5b3f6d3b49f9ee3b8f2b9b9f4e6a5a"; // bouquet rouge (exemple)
+const RSVP_MAIL = "jemimakisisajk@gmail.com"; // adresse qui recevra les RSVP via mailto (changer)
+</script>
+
+<div class="wrap">
+<div class="hero card">
+<div class="cover" id="cover" style="">
+<div style="backdrop-filter: blur(4px); width:100%; padding:18px;">
+<div class="title" id="coupleTitle">Alice &amp; Jean</div>
+<div class="subtitle" id="subtitle">Nous vous invitons à célébrer notre union</div>
+
+<div class="details">
+<div class="pill" id="venuePill">📍 Galerie La Fontaine</div>
+<div class="pill" id="datePill">📅 30 juin 2026 — 15:00</div>
+</div>
+
+<div class="gold-line"></div>
+
+<div class="countdown" id="countdown">
+<div class="unit"><span class="num" id="days">--</span><span class="lbl">Jours</span></div>
+<div class="unit"><span class="num" id="hours">--</span><span class="lbl">Heures</span></div>
+<div class="unit"><span class="num" id="minutes">--</span><span class="lbl">Minutes</span></div>
+<div class="unit"><span class="num" id="seconds">--</span><span class="lbl">Secondes</span></div>
+</div>
+</div>
+</div>
+
+<div class="grid">
+<div>
+<div class="card">
+<h3 style="margin-top:0">Programme</h3>
+<p style="color:var(--muted); margin-top:8px">
+Cérémonie civile à 15:00, suvie d'un vin d'honneur et dîner. Tenue : chic / doré.
+</p>
+
+<div class="gallery" id="gallery">
+<img src="https://images.unsplash.com/photo-1524253482453-3fed8d2fe12b?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=4f6a3a5f7e3b3f5a" alt="photo1">
+<img src="https://images.unsplash.com/photo-1504198453319-5ce911bafcde?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=7a2d7d3efb6df00" alt="photo2">
+<img src="https://images.unsplash.com/photo-1514996937319-344454492b37?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=1b2e3c4d5e6f7a8b" alt="photo3">
+<img src="https://images.unsplash.com/photo-1508873696983-2dfd5898f4b7?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=abc123def456" alt="photo4">
+</div>
+
+<div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap">
+<button class="btn" id="addCalendar">➕ Ajouter au calendrier</button>
+<a class="btn btn-outline" id="downloadInvite" href="#" download="invitation.txt">📩 Télécharger l'invitation</a>
+</div>
+</div>
+
+<div class="card" style="margin-top:12px">
+<h3 style="margin-top:0">RSVP</h3>
+<p style="color:var(--muted); margin-top:8px">Confirme ta présence — ton message ira dans un mail pré-rempli ou sera sauvegardé localement.</p>
+<input class="rsvp-input" id="rsvpName" placeholder="Ton nom complet" />
+<input class="rsvp-input" id="rsvpCount" placeholder="Nombre de personnes" />
+<textarea class="rsvp-input" id="rsvpMsg" placeholder="Un message pour les mariés (facultatif)" style="height:90px"></textarea>
+
+<div style="display:flex; gap:8px; margin-top:8px">
+<button class="btn" id="sendMail">Envoyer par mail</button>
+<button class="btn btn-outline" id="saveLocal">Enregistrer localement</button>
+</div>
+
+<p id="rsvpStatus" style="margin-top:8px;color:var(--muted)"></p>
+</div>
+</div>
+
+<aside>
+<div class="card">
+<h3 style="margin-top:0">Lieu</h3>
+<p style="color:var(--muted)"><strong id="venueName">Galerie Ka Fontaine</strong><br>Kinshasa</p>
+<!-- Google Maps embed using search query (fonctionne sans clé) -->
+<iframe
+class="map"
+id="gmap"
+src="https://www.google.com/maps?q=Galerie+Ka+Fontaine+Kinshasa&output=embed"
+loading="lazy"
+referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+<div style="margin-top:10px; display:flex; gap:8px;">
+<button class="btn" id="openMaps">Ouvrir dans Google Maps</button>
+<a class="btn btn-outline" id="directions" href="#" target="_blank">Itinéraire</a>
+</div>
+</div>
+
+<div class="card" style="margin-top:12px">
+<h3 style="margin-top:0">Infos pratiques</h3>
+<ul style="color:var(--muted); padding-left:18px; margin-top:6px">
+<li>Parking disponible à proximité</li>
+<li>Code couleur : chic / doré</li>
+<li>Contact organisateur : <span id="contactShort">+243 978 048 145</span></li>
+</ul>
+</div>
+</aside>
+</div>
+
+<footer>
+<div style="font-size:13px;color:var(--muted)">Nous avons hâte de partager ce moment avec vous 💛</div>
+</footer>
+</div>
+</div>
+
+<script>
+// initialiser visuel depuis variables JS
+(function init(){
+document.getElementById('cover').style.backgroundImage = 'linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.45)), url(' + COVER_IMAGE + ')';
+document.getElementById('coupleTitle').textContent = BRIDE_NAME + " & " + GROOM_NAME;
+// format date lisible (fr)
+const d = new Date(WEDDING_DATE);
+const opts = { day:'numeric', month:'long', year:'numeric', hour:'2-digit', minute:'2-digit' };
+document.getElementById('datePill').textContent = '📅 ' + d.toLocaleString('fr-FR', opts);
+document.getElementById('venuePill').textContent = '📍 ' + VENUE_NAME;
+document.getElementById('venueName').textContent = VENUE_NAME;
+
+// directions link
+const q = encodeURIComponent(VENUE_NAME + ' Kinshasa');
+document.getElementById('directions').href = 'https://www.google.com/maps/dir/?api=1&destination=' + q;
+document.getElementById('openMaps').addEventListener('click', ()=> window.open('https://www.google.com/maps/search/?api=1&query=' + q, '_blank'));
+
+// download invite (simple)
+const inviteText = `${BRIDE_NAME} & ${GROOM_NAME}\n\nVous êtes invité(e) à notre mariage\n\nDate : ${d.toLocaleString('fr-FR', opts)}\nLieu : ${VENUE_NAME}\n\nRSVP : ${RSVP_MAIL}\n\nNous avons hâte de vous voir !`;
+const blob = new Blob([inviteText], {type:'text/plain'});
+document.getElementById('downloadInvite').href = URL.createObjectURL(blob);
+})();
+
+// countdown
+(function countdown(){
+const target = new Date(WEDDING_DATE).getTime();
+function tick(){
+const now = Date.now();
+const diff = target - now;
+if(diff <= 0){
+document.getElementById('days').textContent = '0';
+document.getElementById('hours').textContent = '0';
+document.getElementById('minutes').textContent = '0';
+document.getElementById('seconds').textContent = '0';
+return;
+}
+const sec = Math.floor(diff/1000);
+const days = Math.floor(sec / (3600*24));
+const hours = Math.floor((sec % (3600*24)) / 3600);
+const minutes = Math.floor((sec % 3600) / 60);
+const seconds = sec % 60;
+document.getElementById('days').textContent = days;
+document.getElementById('hours').textContent = String(hours).padStart(2,'0');
+document.getElementById('minutes').textContent = String(minutes).padStart(2,'0');
+document.getElementById('seconds').textContent = String(seconds).padStart(2,'0');
+}
+tick(); setInterval(tick, 1000);
+})();
+
+// RSVP mailto
+document.getElementById('sendMail').addEventListener('click', ()=>{
+const name = encodeURIComponent(document.getElementById('rsvpName').value || '—');
+const count = encodeURIComponent(document.getElementById('rsvpCount').value || '1');
+const msg = encodeURIComponent(document.getElementById('rsvpMsg').value || '');
+const subject = encodeURIComponent(`RSVP: ${BRIDE_NAME} & ${GROOM_NAME} - ${name}`);
+const body = encodeURIComponent(`Nom: ${name}\nNombre de personnes: ${count}\nMessage: ${msg}\n\nMerci !`);
+const mailto = `mailto:${encodeURIComponent(RSVP_MAIL)}?subject=${subject}&body=${body}`;
+// ouvrir client mail
+window.location.href = mailto;
+document.getElementById('rsvpStatus').textContent = "Le client mail s'est ouvert — confirme l'envoi pour finaliser l'RSVP.";
+});
+
+// sauvegarde local (fallback)
+document.getElementById('saveLocal').addEventListener('click', ()=>{
+const name = document.getElementById('rsvpName').value || '—';
+const count = document.getElementById('rsvpCount').value || '1';
+const msg = document.getElementById('rsvpMsg').value || '';
+const old = JSON.parse(localStorage.getItem('rsvps')||'[]');
+old.push({name, count, msg, time:new Date().toISOString()});
+localStorage.setItem('rsvps', JSON.stringify(old));
+document.getElementById('rsvpStatus').textContent = "Réponse enregistrée localement (visible dans ce navigateur).";
+});
+
+// add to calendar (.ics generation)
+document.getElementById('addCalendar').addEventListener('click', ()=>{
+const start = new Date(WEDDING_DATE);
+const end = new Date(start.getTime() + (4*60*60*1000)); // événement 4h par défaut
+function toICSDate(d){ return d.toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z'; }
+const ics =
+`BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Mariage//Invitation//
+BEGIN:VEVENT
+UID:${Date.now()}@invitation
+DTSTAMP:${toICSDate(new Date())}
+DTSTART:${toICSDate(start)}
+DTEND:${toICSDate(end)}
+SUMMARY:${BRIDE_NAME} & ${GROOM_NAME} — Mariage
+LOCATION:${VENUE_NAME}
+DESCRIPTION:Vous êtes invité(e) au mariage de ${BRIDE_NAME} & ${GROOM_NAME}.
+END:VEVENT
+END:VCALENDAR`;
+const blob = new Blob([ics], {type:'text/calendar'});
+const url = URL.createObjectURL(blob);
+const a = document.createElement('a');
+a.href = url; a.download = 'mariage.ics'; document.body.appendChild(a); a.click(); a.remove();
+});
+
+// small accessibility: keyboard enter -> send mail
+['rsvpName','rsvpCount','rsvpMsg'].forEach(id=>{
+document.getElementById(id).addEventListener('keydown', (e)=>{
+if(e.key === 'Enter' && (e.ctrlKey || e.metaKey)){
+document.getElementById('sendMail').click();
+}
+});
+});
+</script>
+
+</body>
+</html>
